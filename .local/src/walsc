@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#notify-send Trigged
+wal=$(find ~/pix/wall/ -type f -iname "*.jpg" -o -iname "*.png" | shuf -n 1)
+wal -i $wal -q && 
+#wal -i $HOME/pix/wall/ -q &&
+#sleep 1 &&
+setsid xdotool key super+F5 &&
+#notify-send Done
+sleep 1

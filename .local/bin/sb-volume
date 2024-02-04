@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Prints the current volume or 🔇 if muted.
+
+case $BLOCK_BUTTON in
+	1) setsid -w -f "$TERMINAL" -e pulseaudio-ctl; pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}" ;;
+	2) pulseaudio-ctl mute ;;
+	4) pulseaudio-ctl up ;;
+	5) pulseaudio-ctl down ;;
+	3) notify-send "📢 Volume module" "\- Shows volume 🔊, 🔇 if muted.
+- Middle click to mute.
+- Scroll to change." ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+vol="$(pulseaudio-ctl full-status | awk '{print $1}')"
+mvol="$(pulseaudio-ctl full-status | awk '{print $2}')"
+
+# If muted, print 🔇 and exit.
+[ "$mvol" = "yes" ] && echo "🔇$vol%" && exit
+
+vol="${vol%\%}"
+
+case 1 in
+	$((vol >= 70)) ) icon="🔊" ;;
+	$((vol >= 30)) ) icon="🔉" ;;
+	$((vol >= 1)) ) icon="🔈" ;;
+	* ) echo "🔇" && exit ;;
+esac
+
+echo "$vol%"
+

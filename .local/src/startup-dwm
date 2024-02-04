@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Commands to run before starting DWM ##
+
+$HOME/.local/src/walsc
+picom &
+setsid dwmblocks && killall dwmblocks && setsid dwmblocks &
+exec dwm
