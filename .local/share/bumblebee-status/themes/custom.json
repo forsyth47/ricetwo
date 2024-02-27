@@ -1,0 +1,27 @@
+{
+    "icons": [ "awesome-fonts" ],
+    "colors": [ "wal" ],
+    "defaults": {
+        "separator-block-width": 0,
+        "separator": "",
+        "warning": {
+            "fg": "cursor",
+            "bg": "color5"
+        },
+        "critical": {
+            "fg": "cursor",
+            "bg": "color6"
+        },
+        "fg": "foreground", "bg": "background"
+    }, 
+    "battery": {
+        "charged": {
+            "fg": "foreground",
+            "bg": "background"
+        },
+        "charging": {
+            "fg": "foreground",
+            "bg": "background"
+        }
+    }
+}
